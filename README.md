@@ -35,3 +35,9 @@ const App = () => {
 | `debounceIfReducedMotionPreferredToo` | `boolean`   | `false` | Apply debounce even if user agent prefers reduced motion. |
 | `unmountContentWhileResizing`         | `boolean`   | `false` | Remove main from DOM while resizing.                      |
 | `disableCrossFade`                    | `boolean`   | `false` | Disable fade in and out of main and fallback content.     |
+
+### Other exported helpers
+
+- `useMedia`: Can be used to detect media query changes.
+- `usePrefersReducedMotion`: Can be used to detect if user prefers reduced motion.
+- `useDebounceResize`: Handles the logic of `<DebounceResize>` without visual effects.
