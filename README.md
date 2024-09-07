@@ -25,3 +25,13 @@ const App = () => {
 	)
 }
 ```
+
+### Props
+
+| Prop                                  | Type        | Default | Description                                               |
+| ------------------------------------- | ----------- | ------- | --------------------------------------------------------- |
+| `fallback`                            | `ReactNode` |         | Fallback content shown while resizing is happening.       |
+| `debounceMilliseconds`                | `number`    | `300`   | How long to wait before assuming resize has ended.        |
+| `debounceIfReducedMotionPreferredToo` | `boolean`   | `false` | Apply debounce even if user agent prefers reduced motion. |
+| `unmountContentWhileResizing`         | `boolean`   | `false` | Remove main from DOM while resizing.                      |
+| `disableCrossFade`                    | `boolean`   | `false` | Disable fade in and out of main and fallback content.     |
