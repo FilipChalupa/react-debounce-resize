@@ -15,6 +15,11 @@ import { SwipeAction } from 'react-debounce-resize'
 import 'react-debounce-resize/dist/index.css'
 
 const App = () => {
-	// @TODO
+	return (
+		<DebounceResize fallback="Redrawing…">
+			Your content here. E.g. a chart which is computationally intensive when
+			resized.
+		</DebounceResize>
+	)
 }
 ```

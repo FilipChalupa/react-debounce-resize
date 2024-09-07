@@ -21,6 +21,7 @@
 		"typescript",
 		"react",
 		"resize",
+		"ResizeObserver",
 		"debounce",
 		"transition",
 		"pending"
