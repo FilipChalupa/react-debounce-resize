@@ -2,6 +2,10 @@
 	position: relative;
 	--crossFade-transition-duration: 0.2s;
 
+	@media (prefers-reduced-motion: reduce) {
+		--crossFade-transition-duration: 0s;
+	}
+
 	&.is_resizing {
 		.content {
 			visibility: hidden;
