@@ -19,10 +19,18 @@ export const All: Story = {
 	render: () => <Render />,
 }
 
+const min = 80
+const max = 600
+
+const random = () => Math.floor(Math.random() * (max - min + 1)) + min
+const interpolate = (initial: number, target: number, progress: number) =>
+	Math.floor(progress * (target - initial)) + initial
+
 const Render: FunctionComponent = () => {
 	const [width, setWidth] = useState(300)
 	const [height, setHeight] = useState(300)
 	const prefersReducedMotion = usePrefersReducedMotion()
+	const [isAnimating, setIsAnimating] = useState(false)
 
 	return (
 		<div
@@ -35,9 +43,10 @@ const Render: FunctionComponent = () => {
 				Width: <b>{width}</b>px
 				<input
 					type="range"
+					disabled={isAnimating}
 					value={width}
-					min={80}
-					max={600}
+					min={min}
+					max={max}
 					onChange={(event) => {
 						setWidth(event.target.valueAsNumber)
 					}}
@@ -45,13 +54,40 @@ const Render: FunctionComponent = () => {
 				Height: <b>{height}</b>px
 				<input
 					type="range"
+					disabled={isAnimating}
 					value={height}
-					min={80}
-					max={600}
+					min={min}
+					max={max}
 					onChange={(event) => {
 						setHeight(event.target.valueAsNumber)
 					}}
 				/>
+				<button
+					type="button"
+					disabled={isAnimating}
+					className="random"
+					onClick={() => {
+						setIsAnimating(true)
+						const targetWidth = random()
+						const targetHeight = random()
+						const countMax = 60
+						let count = countMax
+						const loop = () => {
+							count--
+							const progress = 1 - count / countMax
+							setWidth(interpolate(width, targetWidth, progress))
+							setHeight(interpolate(height, targetHeight, progress))
+							if (count > 0) {
+								setTimeout(loop, 1000 / 60)
+							} else {
+								setIsAnimating(false)
+							}
+						}
+						loop()
+					}}
+				>
+					Animate random dimensions
+				</button>
 			</div>
 			{prefersReducedMotion && (
 				<p className="warning">
